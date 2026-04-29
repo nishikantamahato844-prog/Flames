@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic FLAMES</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="screen-intro" class="screen active">
+        <h2>
+            <span id="typewriter-text"></span><span class="cursor">&nbsp;</span>
+        </h2>
+        <button id="start-btn" style="display: none; margin-top: 20px;" onclick="switchScreen('screen-gender')">Enter Game</button>
+    </div>
+
+    <div id="screen-gender" class="screen">
+        <h1>FLAMES</h1>
+        <p>Choose your aesthetic to begin:</p>
+        <div class="btn-group">
+            <button onclick="setTheme('boy')">Boy (Blue Palette)</button>
+            <button onclick="setTheme('girl')">Girl (Pink Palette)</button>
+        </div>
+    </div>
+
+    <div id="screen-input" class="screen">
+        <h2>Enter Names</h2>
+        <input type="text" id="name1" placeholder="Your Name" autocomplete="off">
+        <input type="text" id="name2" placeholder="His/Her Name" autocomplete="off">
+        <button onclick="startAnimation()">Calculate Destiny</button>
+    </div>
+
+    <div id="screen-animation" class="screen">
+        <h2>Analyzing...</h2>
+        <div class="name-container" id="display-name1"></div>
+        <div class="name-container" id="display-name2"></div>
+    </div>
+
+    <div id="screen-result" class="screen">
+        <h3>Your Relationship:</h3>
+        <h1 id="final-result"></h1>
+        <button onclick="resetGame()">Play Again</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+/* =========================================
+   CSS Variables & Color Palettes
+   ========================================= */
+/* Default (Intro & Selection Screen Palette) */
+:root {
+    --bg-color: #dad4df;
+    --text-color: #312a44;
+    --btn-bg: #8870e3;
+    /* Adding '99' at the end of the hex code gives it a ~60% opacity for the glassmorphism effect */
+    --card-bg: #bab0c899; 
+    --strike-color: #000;
+}
+
+/* Boy Theme - Blue Palette */
+body.theme-boy {
+    --bg-color: #D6EBF3;    
+    --card-bg: rgba(218, 222, 237, 0.6); 
+    --btn-bg: #629BB5;      
+    --text-color: #447F98;  
+    --strike-color: #447F98; 
+}
+
+/* Girl Theme - Pink Palette */
+body.theme-girl {
+    --bg-color: #F7DAE7;    
+    --card-bg: rgba(226, 180, 193, 0.6); 
+    --btn-bg: #D38C9D;      
+    --text-color: #A55166;  
+    --strike-color: #A55166;
+}
+
+/* =========================================
+   Base Reset & Body
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-color) 0%, #ffffff 100%);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 0.5s ease;
+}
+
+/* =========================================
+   Screen Management & Glassmorphism
+   ========================================= */
+.screen {
+    display: none;
+    text-align: center;
+    
+    background: var(--card-bg); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    
+    width: 90%; 
+    max-width: 500px; 
+    
+    animation: fadeIn 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   Typography, Inputs & Elements
+   ========================================= */
+h1 { margin-bottom: 15px; }
+p, h2 { margin-bottom: 20px; }
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.8);
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border: 2px solid var(--btn-bg);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button {
+    background: var(--btn-bg);
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: bold;
+    transition: transform 0.2s ease, filter 0.2s, box-shadow 0.2s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Typewriter Cursor Effect */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--text-color);
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* =========================================
+   Animation & Striking Output
+   ========================================= */
+.name-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    flex-wrap: wrap;
+}
+
+.name-container span {
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s;
+    margin: 0 2px;
+}
+
+.strike {
+    color: rgba(0, 0, 0, 0.25) !important; 
+}
+
+.strike::after {
+    content: '';
+    position: absolute;
+    left: -10%; 
+    top: 50%;
+    width: 120%; 
+    height: 3px;
+    background-color: var(--strike-color);
+    transform: scaleX(0) rotate(-15deg);
+    transform-origin: left;
+    animation: slash 0.3s forwards;
+}
+
+@keyframes slash {
+    to { transform: scaleX(1) rotate(-15deg); }
+}
+
+#final-result {
+    margin-top: 20px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* =========================================
+   Desktop Media Query (The Size Fix)
+   ========================================= */
+@media (min-width: 1024px) {
+    .screen {
+        max-width: 650px; 
+        padding: 4.5rem;  
+        border-radius: 40px;
+    }
+    
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    
+    input {
+        font-size: 1.2rem;
+        padding: 16px;
+    }
+    
+    button {
+        padding: 18px;
+        font-size: 1.15rem;
+    }
+    
+    .name-container {
+        font-size: 2.5rem; 
+    }
+    
+    #final-result {
+        font-size: 3.5rem; 
+    }
+}
